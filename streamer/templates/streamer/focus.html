@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<head>
+{%load static%}
+<link href='https://fonts.googleapis.com/css?family=Lato:400,300,900' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="{%static 'streamer\css\focus.css'%}">
+<script type='text/javascript' src="{%static 'streamer\js\focus.js'%}"></script>
+<script type='text/javascript'>function A(){
+  alert('hi!');
+}</script>
+  <title>{{focus}}</title>
+</head>
+<body>
+  <div id="top">
+    <h1> {{focus}} </h1>
+    <form action='.' method='POST'>{%csrf_token%}
+      <div>
+        <input class='content-input' type="text" name='keyword' placeholder="Add a note..."required>
+        <input class='myButton' type="submit" value="Submit">
+		<input type="hidden" name="focus_query" value="{{focus}}">
+      </div>
+	 </form>
+	 <form action='.' method='POST'>{%csrf_token%}
+	  <div>
+        <input class='content-input' type="text" name='link' placeholder="Add a link..." required>
+        <input class='myButton' type="submit" value="Submit">
+		<input type="hidden" name="focus_query" value="{{focus}}">
+      </div>
+    </form>
+  </div>
+  <div class = 'topic_info'>
+  <table>
+    <tr>
+      <td id = 'topic_summary_hide' onclick="hideContent('topic_summary_hide','topic_summary_show')">
+        <h2>SUMMARY</h2>
+      </td>
+      <td id = 'topic_summary_show' onclick="hideContent('topic_summary_show', 'topic_summary_hide')">
+      <p>{{summary}} </p>
+      </td>
+
+      <td id = 'topic_links_hide' onclick="hideContent('topic_links_hide','topic_links_show')">
+      <h2>LINKS</h2>
+      </td>
+	    <td id = 'topic_links_show'  onclick="hideContent('topic_links_show','topic_links_hide')">
+	       {%for link in links%}
+         <li>
+	          <a class='List-Items' href={{link}}><h5>{{link}} </h5></a>
+            <form  method='post'> {%csrf_token%}
+            <input class = 'delete_button' type='image'></input>
+            <input type="hidden" name="focus_query" value="{{focus}}">
+            <input type="hidden" name="delete-link" value="{{link}}">
+          </form>
+	           {%empty%}
+	            <p>Add you own links above</p>
+	             {%endfor%}
+         </li>
+     </td>
+   </tr>
+   <tr>
+     <td id = 'topic_notes_hide'  onclick="hideContent('topic_notes_hide','topic_notes_show')">
+       <h2>NOTES</h2>
+     </td>
+	    <td id = 'topic_notes_show'  onclick="hideContent('topic_notes_show','topic_notes_hide')" >
+	        {%for keyword in keywords%}
+	      <ul>
+          <li>
+            {{keyword}}
+            <form  method='post'> {%csrf_token%}
+            <input class = 'delete_button' type='image'></input>
+            <input type="hidden" name="focus_query" value="{{focus}}">
+            <input type="hidden" name="delete-note" value="{{keyword}}">
+           </form>
+         </li>
+        </ul>
+	        {%empty%}
+	      <p>Add you own keywords above</p>
+	        {%endfor%}
+      </td>
+      <td id = 'topic_uploads_hide'  onclick="hideContent('topic_uploads_hide','topic_uploads_show')">
+        <h2>UPLOADS</h2>
+      </td>
+      <td id = 'topic_uploads_show'  onclick="hideContent('topic_uploads_show','topic_uploads_hide')">
+        <p>Add files to upload</p>
+      </td>
+    </tr>
+</table>
+</div>
+</body>

@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+{%load static%}
+<link rel="stylesheet" type="text/css" href="{%static 'streamer\css\user_page.css'%}">
+<title>InfoDump</title>
+</head>
+<body>
+  <div id="top">
+    <h1> InfoDump</h1>
+    <p>Click on a focus to be taken to it's InfoDump.</p>
+    <form action="." method="post">{%csrf_token%}
+      <div id="add_focus">
+        <input type="text" name='query' placeholder="Add a focus..." required></input>
+        <input type="submit" value="Submit"></input>
+      </div>
+    </form>
+  </div>
+  <div id='main_body'>
+  <table id="linker" data-link='focusPage/'>
+  {%for focus in focus_list%}
+    <tr id="focus_style"><td><p><form action="focusPage/" method="post">{%csrf_token%}
+      <input type="submit" value="{{focus}}" name="focus_query"></input></form></p></td</tr>
+	{%empty%}
+	<tr><td><p id="focus_style">Add a focus to begin researching.</p></td></tr>
+  {%endfor%}
+  </form>
+</div>
+</body
+</html>

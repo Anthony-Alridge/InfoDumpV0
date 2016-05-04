@@ -1,0 +1,174 @@
+#top {
+  color:white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width:100%;
+  height:30%;
+  background-image:url(../imgs/banner.png);
+  text-align: center;
+}
+
+body{
+  font-family: 'Lato';
+  overflow:scroll;
+  align-items: center;
+}
+
+.content-input{
+ padding: 10px;
+ border: solid 1px #fff;
+ box-shadow: inset 1px 1px 2px 0 #707070;
+ transition: box-shadow 0.3s;
+
+}
+
+.myButton {
+ -moz-box-shadow:inset 7px 1px 31px 1px #91b8b3;
+ -webkit-box-shadow:inset 7px 1px 31px 1px #91b8b3;
+ box-shadow:inset 7px 1px 31px 1px #91b8b3;
+ background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #768d87), color-stop(1, #6c7c7c));
+ background:-moz-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
+ background:-webkit-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
+ background:-o-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
+ background:-ms-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
+ background:linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
+ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#768d87', endColorstr='#6c7c7c',GradientType=0);
+ background-color:#768d87;
+ -moz-border-radius:2px;
+ -webkit-border-radius:2px;
+ border-radius:2px;
+ border:2px solid #566963;
+ display:inline-block;
+ cursor:pointer;
+ color:#ffffff;
+ font-family:Arial;
+ font-size:10px;
+ font-weight:bold;
+ padding:10px 13px;
+ text-decoration:none;
+ text-shadow:3px 2px 0px #2b665e;
+}
+.myButton:hover {
+ background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #6c7c7c), color-stop(1, #768d87));
+ background:-moz-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+ background:-webkit-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+ background:-o-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+ background:-ms-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+ background:linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
+ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#6c7c7c', endColorstr='#768d87',GradientType=0);
+ background-color:#6c7c7c;
+}
+.myButton:active {
+ position:relative;
+ top:1px;
+}
+
+.topic_info{
+   width: 100%;
+   position:absolute;
+   bottom:0;
+   right:0;
+   left:0;
+   height:70%;
+   background-color: gray;
+}
+table{
+  width:100%;
+  height: 100%
+}
+#topic_summary_hide{
+  display:table-cell;
+  position: relative;
+  width:50%;
+  height: 50%;
+  color:white;
+  text-align: center;
+  background-image:url(../imgs/banner.png);
+  border: 1px solid black;
+}
+#topic_summary_hide:hover{
+  color:green;
+  box-shadow: 10px 10px;
+}
+
+#topic_summary_show{
+  display:none;
+  color:black;
+  background-image:url(../imgs/banner-white.png);
+  border: 1px solid black;
+}
+#topic_notes_hide{
+  display:table-cell;
+  position: relative;
+  height: 50%;
+  width:50%;
+  color:white;
+  text-align: center;
+  background-image:url(../imgs/banner.png);
+  border: 1px solid black;
+}
+#topic_notes_hide:hover{
+  color:green;
+  box-shadow: 10px 10px;
+}
+#topic_notes_show{
+  display: none;
+  background-image:url(../imgs/banner-white.png);
+  border: 1px solid black;
+}
+#topic_links_hide{
+  display: table-cell;
+  position: relative;
+  height: 50%;
+  width:50%;
+  color:white;
+  text-align: center;
+  background-image:url(../imgs/banner.png);
+  border: 1px solid black;
+}
+#topic_links_hide:hover{
+  color:green;
+    box-shadow: 10px 10px ;
+}
+#topic_links_show{
+  display: none;
+  background-image:url(../imgs/banner-white.png);
+  border: 1px solid black;
+}
+#topic_uploads_hide{
+  display: table-cell;
+  position: relative;
+  height: 50%;
+  width:50%;
+  color:white;
+  text-align: center;
+  background-image:url(../imgs/banner.png);
+  border: 1px solid black;
+}
+#topic_uploads_hide:hover{
+  color:green;
+  box-shadow: 10px 10px ;
+}
+#topic_uploads_show{
+  display:none;
+  color:black;
+  text-align: center;
+  background-image:url(../imgs/banner-white.png);
+  border: 1px solid black;
+}
+.List-Items{
+  text-align: center;
+  text-decoration: none;
+  color:black;
+}
+.List-Items:hover{
+  text-decoration: none;
+  color:blue;
+}
+.delete_button{
+  background-color:red;
+  font-size:0;
+  height:40px;
+  width:40px;
+}
