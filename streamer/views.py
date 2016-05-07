@@ -6,9 +6,12 @@ from .scraping.wiki import Wiki
 # Create your views here.
 def user_page(request):
     focus_request = request.POST.get('query')
+    delete_focus = request.POST.get('delete_focus')
     if focus_request:
         f1 = Focus(focus=focus_request)
         f1.save()
+    if delete_focus:
+        Focus.objects.get(focus=delete_focus).delete()
     context = {'focus_list': Focus.objects.all()}
     return render(request, 'streamer/user_page.html', context)
 

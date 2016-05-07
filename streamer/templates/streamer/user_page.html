@@ -20,8 +20,15 @@
   <div id='main_body'>
   <table id="linker" data-link='focusPage/'>
   {%for focus in focus_list%}
-    <tr id="focus_style"><td><p><form action="focusPage/" method="post">{%csrf_token%}
-      <input type="submit" value="{{focus}}" name="focus_query"></input></form></p></td</tr>
+    <tr id="focus_style"><td><p>
+      <form action="focusPage/" method="post">{%csrf_token%}
+      <input type="submit" value="{{focus}}" name="focus_query"></input>
+      </form>
+      <form action = '.' method="post">{%csrf_token%}
+        <input class = 'delete_button' type='image'></input>
+        <input type="hidden" name="delete_focus" value="{{focus}}"></input>
+      </form>
+      </td</tr>
 	{%empty%}
 	<tr><td><p id="focus_style">Add a focus to begin researching.</p></td></tr>
   {%endfor%}

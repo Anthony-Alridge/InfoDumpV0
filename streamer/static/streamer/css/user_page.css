@@ -86,6 +86,12 @@
     -moz-box-shadow:10px 10px 10px rgba(0, 0, 0, 0.5);
     box-shadow:  40px 40px 40px rgba(0, 0, 0, 0.6);
 }
+.delete_button{
+  background-color:red;
+  font-size:0;
+  height:40px;
+  width:40px;
+}
 table {
   width: 75%;
   margin: auto;

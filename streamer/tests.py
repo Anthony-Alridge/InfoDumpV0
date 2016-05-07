@@ -36,6 +36,9 @@ class UserPageViewTests(TestCase):
         self.assertContains(response, 'Add a focus to begin researching')
 
     def test_home_view_with_multiple_focuses(self):
+        '''
+        there should be focuses on the page if they are n the database
+        '''
         for rand_words in range(100):
             word = str(rand_words)
             insert_focus(word)
@@ -45,9 +48,23 @@ class UserPageViewTests(TestCase):
             word = str(rand_words)
             self.assertContains(response, word)
 
-    def test_user_can_add_views(self):
+    def test_user_can_add_focuses(self):
+        '''
+        when a user adds a focus it should be displayed
+        '''
         response = self.client.post(reverse('streamer:user_page'),{'query':'test_focus'})
         self.assertContains(response, 'test_focus')
+
+    def test_user_can_delete_focuses(self):
+        '''
+        A post request sent to the server labelled delete_focus should delete the
+        corresponding focus
+        '''
+        query = 'some focus'
+        insert_focus(query)
+        response = self.client.post(reverse('streamer:user_page'), {'query':'test_focus', 'delete_focus':query})
+        focus = [str(focus) for focus in response.context['focus_list']]
+        assert query not in focus
 
 
 class FocusPageViewTests(TestCase):
@@ -84,8 +101,9 @@ class FocusPageViewTests(TestCase):
         '''
         The summary context should not be none.
         '''
-        insert_focus('Monty Python 4')
-        response = self.client.post(reverse('streamer:focus_page'), {'focus_query':'Monty Python 4'})
+        query = 'random query which wont be in wiki'
+        insert_focus(query)
+        response = self.client.post(reverse('streamer:focus_page'), {'focus_query':query})
         self.assertEqual(response.status_code, 200)
         self.assertIsNotNone(response.context['summary'])
 
