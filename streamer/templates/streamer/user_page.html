@@ -3,6 +3,7 @@
 
 <head>
 {%load static%}
+<script type="text/javascript" src="{%static 'streamer\js\user.js'%}"> </script>
 <link rel="stylesheet" type="text/css" href="{%static 'streamer\css\user_page.css'%}">
 <title>InfoDump</title>
 </head>
@@ -20,15 +21,18 @@
   <div id='main_body'>
   <table id="linker" data-link='focusPage/'>
   {%for focus in focus_list%}
-    <tr id="focus_style"><td><p>
+    <tr id="focus_style"><td>
       <form action="focusPage/" method="post">{%csrf_token%}
-      <input type="submit" value="{{focus}}" name="focus_query"></input>
+      <input type="submit" onmouseover="show_del_button('delete_{{focus}}')"
+       onmouseout="hide_del_button('delete_{{focus}}')"
+       value="{{focus}}" name="focus_query"></input>
       </form>
       <form action = '.' method="post">{%csrf_token%}
-        <input class = 'delete_button' type='image'></input>
+        <input class='delete_button' id = 'delete_{{focus}}' type='image' value='delete'></input>
         <input type="hidden" name="delete_focus" value="{{focus}}"></input>
       </form>
-      </td</tr>
+    </td>
+</tr>
 	{%empty%}
 	<tr><td><p id="focus_style">Add a focus to begin researching.</p></td></tr>
   {%endfor%}

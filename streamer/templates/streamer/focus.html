@@ -42,7 +42,7 @@
       </td>
 	    <td id = 'topic_links_show'  onclick="hideContent('topic_links_show','topic_links_hide')">
 	       {%for link in links%}
-         <li>
+         <li class = Lists>
 	          <a class='List-Items' href={{link}}><h5>{{link}} </h5></a>
             <form  method='post'> {%csrf_token%}
             <input class = 'delete_button' type='image'></input>

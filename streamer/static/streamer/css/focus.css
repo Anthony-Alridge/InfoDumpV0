@@ -157,18 +157,26 @@ table{
   background-image:url(../imgs/banner-white.png);
   border: 1px solid black;
 }
+.Lists{
+  width:0%;
+  white-space: nowrap;
+}
 .List-Items{
-  text-align: center;
+  text-align: left;
   text-decoration: none;
   color:black;
+  width:50%;
+
 }
 .List-Items:hover{
   text-decoration: none;
   color:blue;
 }
 .delete_button{
+  position: absolute;
   background-color:red;
   font-size:0;
   height:40px;
   width:40px;
+  right:0;
 }
