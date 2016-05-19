@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{% extends 'home/base.html' %}
+<html lang='en'>
+<head>
+  <title> InfoDump|Sign Up Now</title>
+</head>
+<body>
+{%block top%}
+<h1>Register now</h1>
+{%endblock%}
+  {%block main_body%}
+<form action="." method="POST"> {%csrf_token%}
+  <table>
+    {{form.as_table}}
+  </table>
+  <p><input class=myButton type='submit' value='Submit'></p>
+</form>
+{%endblock%}
+</body>
+
+</html>

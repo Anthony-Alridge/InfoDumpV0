@@ -1,0 +1,109 @@
+#top {
+  font-family: 'Lato';
+  color:white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width:100%;
+  height:25%;
+  background-image:url(../imgs/banner.png);
+  text-align: center;
+}
+
+#main_body{
+
+  position: absolute;
+  width:100%;
+  bottom:0;
+  height:75%;
+  text-align: center;
+  margin:auto;
+}
+
+body {
+  background-image:url(../imgs/banner-white.png);
+  font-family: 'Lato';
+  border: solid 1px #fff;
+
+}
+
+/*for styling forms similarly. Already have had to repeat this twice, might as well put in base*/
+table{
+  margin:auto;
+  width:40%;
+}
+label{
+padding: 10px;
+border: solid 1px #DDD;
+box-shadow: inset 1px 1px 2px 0 #707070;
+transition: box-shadow 0.3s;
+width: 100%;
+white-space: nowrap;
+font-size: 10px;
+left:0;
+}
+
+#id_username{
+ padding: 10px;
+ border: solid 1px #fff;
+ box-shadow: inset 1px 1px 2px 0 #707070;
+ transition: box-shadow 0.3s;
+ width: 100%;
+}
+#id_email{
+ padding: 10px;
+ border: solid 1px #fff;
+ box-shadow: inset 1px 1px 2px 0 #707070;
+ transition: box-shadow 0.3s;
+ width: 100%;
+}
+#id_password{
+  width: 100%;
+ padding: 10px;
+ border: solid 1px #fff;
+ box-shadow: inset 1px 1px 2px 0 #707070;
+ transition: box-shadow 0.3s;
+
+}
+
+.myButton {
+ -moz-box-shadow:inset 7px 1px 31px 1px #91b8b3;
+ -webkit-box-shadow:inset 7px 1px 31px 1px #91b8b3;
+ box-shadow:inset 7px 1px 31px 1px #91b8b3;
+ background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #768d87), color-stop(1, #6c7c7c));
+ background:-moz-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
+ background:-webkit-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
+ background:-o-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
+ background:-ms-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
+ background:linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
+ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#768d87', endColorstr='#6c7c7c',GradientType=0);
+ background-color:#768d87;
+ -moz-border-radius:2px;
+ -webkit-border-radius:2px;
+ border-radius:2px;
+ border:2px solid #566963;
+ display:inline-block;
+ cursor:pointer;
+ color:#ffffff;
+ font-family:Arial;
+ font-size:10px;
+ font-weight:bold;
+ padding:10px 13px;
+ text-decoration:none;
+ text-shadow:3px 2px 0px #2b665e;
+ width:25%;
+}
+.myButton:hover {
+ background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #6c7c7c), color-stop(1, #768d87));
+ background:-moz-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+ background:-webkit-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+ background:-o-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+ background:-ms-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+ background:linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
+ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#6c7c7c', endColorstr='#768d87',GradientType=0);
+ background-color:#6c7c7c;
+}
+.myButton:active {
+ position:relative;
+ top:1px;
+}

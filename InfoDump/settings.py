@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'streamer.apps.StreamerConfig',
+    'home.apps.HomeConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -82,7 +83,7 @@ DATABASES = {
     }
 }
 
-
+AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',)
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
 
@@ -100,7 +101,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
@@ -125,5 +125,3 @@ MEDIA_URL ='/media/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATIC_URL = '/static/'
-
-

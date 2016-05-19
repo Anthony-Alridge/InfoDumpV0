@@ -4,10 +4,7 @@
 <link href='https://fonts.googleapis.com/css?family=Lato:400,300,900' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" type="text/css" href="{%static 'streamer\css\focus.css'%}">
 <script type='text/javascript' src="{%static 'streamer\js\focus.js'%}"></script>
-<script type='text/javascript'>function A(){
-  alert('hi!');
-}</script>
-  <title>{{focus}}</title>
+<title>{{focus}}</title>
 </head>
 <body>
   <div id="top">
@@ -26,6 +23,10 @@
 		<input type="hidden" name="focus_query" value="{{focus}}">
       </div>
     </form>
+    <form id='log_out_form' action='.' method='post'>{%csrf_token%}
+    <input class='log_out' type='submit' name='log_out_request' value='log_out'></input>
+    <input type="hidden" name="focus_query" value="{{focus}}">
+  </form>
   </div>
   <div class = 'topic_info'>
   <table>
