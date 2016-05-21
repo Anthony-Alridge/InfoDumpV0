@@ -11,21 +11,20 @@
     <h1> {{focus}} </h1>
     <form action='.' method='POST'>{%csrf_token%}
       <div>
-        <input class='content-input' type="text" name='keyword' placeholder="Add a note..."required>
+        <input class='content-input' type="text" name='note' placeholder="Add a note..."required>
         <input class='myButton' type="submit" value="Submit">
-		<input type="hidden" name="focus_query" value="{{focus}}">
       </div>
 	 </form>
 	 <form action='.' method='POST'>{%csrf_token%}
 	  <div>
         <input class='content-input' type="text" name='link' placeholder="Add a link..." required>
         <input class='myButton' type="submit" value="Submit">
-		<input type="hidden" name="focus_query" value="{{focus}}">
+
       </div>
     </form>
     <form id='log_out_form' action='.' method='post'>{%csrf_token%}
     <input class='log_out' type='submit' name='log_out_request' value='log_out'></input>
-    <input type="hidden" name="focus_query" value="{{focus}}">
+
   </form>
   </div>
   <div class = 'topic_info'>
@@ -47,7 +46,6 @@
 	          <a class='List-Items' href={{link}}><h5>{{link}} </h5></a>
             <form  method='post'> {%csrf_token%}
             <input class = 'delete_button' type='image'></input>
-            <input type="hidden" name="focus_query" value="{{focus}}">
             <input type="hidden" name="delete-link" value="{{link}}">
           </form>
 	           {%empty%}
@@ -61,19 +59,18 @@
        <h2>NOTES</h2>
      </td>
 	    <td id = 'topic_notes_show'  onclick="hideContent('topic_notes_show','topic_notes_hide')" >
-	        {%for keyword in keywords%}
+	        {%for note in notes%}
 	      <ul>
           <li>
-            {{keyword}}
+            {{note}}
             <form  method='post'> {%csrf_token%}
             <input class = 'delete_button' type='image'></input>
-            <input type="hidden" name="focus_query" value="{{focus}}">
-            <input type="hidden" name="delete-note" value="{{keyword}}">
+            <input type="hidden" name="delete-note" value="{{note}}">
            </form>
          </li>
         </ul>
 	        {%empty%}
-	      <p>Add you own keywords above</p>
+	      <p>Add you own notes above</p>
 	        {%endfor%}
       </td>
       <td id = 'topic_uploads_hide'  onclick="hideContent('topic_uploads_hide','topic_uploads_show')">

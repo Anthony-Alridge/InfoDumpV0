@@ -80,7 +80,7 @@ class UserPageViewTests(TestCase):
         '''
         user = make_user('username', 'password')
         self.client.login(username='username', password='password')
-        response = self.client.post(reverse('streamer:user_page'),{'query':'test_focus'})
+        response = self.client.post(reverse('streamer:user_page'),{'focus':'test_focus'})
         self.assertContains(response, 'test_focus')
 
     def test_user_can_delete_focuses(self):
@@ -89,12 +89,12 @@ class UserPageViewTests(TestCase):
         corresponding focus
         '''
         user = make_user('username', 'password')
-        query = 'some focus'
-        insert_focus(query, user)
+        focus = 'some focus'
+        insert_focus(focus, user)
         self.client.login(username='username', password='password')
-        response = self.client.post(reverse('streamer:user_page'), {'query':'test_focus', 'delete_focus':query})
+        response = self.client.post(reverse('streamer:user_page'), {'focus':'test_focus', 'delete_focus':focus})
         focus = [str(focus) for focus in response.context['focus_list']]
-        assert query not in focus
+        assert focus not in focus
 
 
 class FocusPageViewTests(TestCase):
@@ -111,13 +111,13 @@ class FocusPageViewTests(TestCase):
 
     def test_focus_page_lets_user_add_keywords(self):
         '''
-        when a post request is sent to the server named keyword it should be added
+        when a post request is sent to the server named note it should be added
         to a list on the page
         '''
         user = make_user('username', 'password')
         insert_focus('Monty Python 1', user)
         self.client.login(username='username', password='password')
-        response = self.client.post(reverse('streamer:focus_page'), {'focus_query':'Monty Python 1','keyword':'test_notes'})
+        response = self.client.post(reverse('streamer:focus_page'), {'focus_query':'Monty Python 1','note':'test_notes'})
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'test_notes')
 
@@ -133,30 +133,48 @@ class FocusPageViewTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'test_links')
 
-    def test_focus_page_returns_a_summary(self):
+    def test_focus_page_returns_a_summary_upon_landing(self):
         '''
         The summary context should not be none.
         '''
         user = make_user('username', 'password')
-        query = 'random query which wont be in wiki'
-        insert_focus(query, user)
+        focus = 'random focus which wont be in wiki'
+        insert_focus(focus, user)
         self.client.login(username='username', password='password')
-        response = self.client.post(reverse('streamer:focus_page'), {'focus_query':query})
+        response = self.client.post(reverse('streamer:focus_page'), {'focus_query':focus})
         self.assertEqual(response.status_code, 200)
         self.assertIsNotNone(response.context['summary'])
 
+    def test_focus_page_returns_a_summary_upon_returning(self):
+        '''
+        when a user does some action on the page (e.g. reload) a summary should
+        still be returned
+        '''
+        user = make_user('username', 'password')
+        focus = 'random focus'
+        insert_focus(focus, user)
+        session = self.client.session
+        session['current_focus'] = focus
+        session.save()
+        self.client.login(username='username', password='password')
+        response = self.client.post(reverse('streamer:focus_page'))
+        self.assertEqual(response.status_code, 200)
+        self.assertIsNotNone(response.context['summary'])
     def test_focus_page_allows_user_to_delete_notes(self):
          '''
          When a post request labelled delete_note is sent to server
-         it should delete a keyword from the model
+         it should delete a note from the model
          '''
+         session = self.client.session
+         focus = 'Monty Python'
+         session['current_focus'] = focus
+         session.save()
          user = make_user('username', 'password')
-         topic = 'Monty Python'
          note = 'I should learn more about tests'
-         insert_note(topic, note, user)
+         insert_note(focus, note, user)
          self.client.login(username='username', password='password')
-         response = self.client.post(reverse('streamer:focus_page'), {'focus_query':'Monty Python', 'delete-note':note})
-         notes = [str(_) for _ in response.context['keywords']]
+         response = self.client.post(reverse('streamer:focus_page'), {'delete-note':note})
+         notes = [str(_) for _ in response.context['notes']]
          self.assertEqual(response.status_code, 200)
          assert note not in notes
 
@@ -166,11 +184,14 @@ class FocusPageViewTests(TestCase):
         it should delete a link from the model
         '''
         user = make_user('username', 'password')
-        topic = 'Monty Python'
+        session = self.client.session
+        focus = 'Monty Python'
+        session['current_focus'] = focus
+        session.save()
         url = 'www.test-url.com/Pythonista'
-        insert_url(topic, url, user)
+        insert_url(focus, url, user)
         self.client.login(username='username', password='password')
-        response = self.client.post(reverse('streamer:focus_page'), {'focus_query':'Monty Python', 'delete-link':url})
+        response = self.client.post(reverse('streamer:focus_page'), {'delete-link':url})
         links = [str(_) for _ in response.context['links']]
         self.assertEqual(response.status_code, 200)
         assert url not in links
