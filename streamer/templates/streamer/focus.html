@@ -3,7 +3,6 @@
   {%load static%}
   <link href='https://fonts.googleapis.com/css?family=Lato:400,300,900' rel='stylesheet' type='text/css'></link>
   <link rel="stylesheet" type="text/css" href="{%static 'streamer\css\focus.css'%}"></link>
-  <link rel="stylesheet" type="text/css" href="{%static 'streamer\css\base.css'%}"></link>
   <script type='text/javascript' src="{%static 'streamer\js\focus.js'%}"></script>
   <title>{{focus}}</title>
 </head>
@@ -50,13 +49,12 @@
 	      <td id = 'topic_links_show'  onclick="hideContent('topic_links_show','topic_links_hide')">
 	       {%for link in links%}
          <li class = Lists>
-	          <a class='List-Items' href={{link}}><h5>{{link}} </h5></a>
+	         <a class='List-Items' href={{link}}><h5>{{link}} </h5></a>
 
             <form  method='post'> {%csrf_token%}
               <input class = 'delete_button' type='image'></input>
               <input type="hidden" name="delete-link" value="{{link}}">
             </form>
-
 	      {%empty%}
 	         <p>Add you own links above</p>
 	      {%endfor%}

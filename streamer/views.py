@@ -20,8 +20,12 @@ def user_page(request):
         f1.save()
         user.profile.focus.add(f1)
     if delete_focus:
-        foc = user.profile.focus.get(focus=delete_focus)
-        user.profile.focus.remove(foc)
+        try:
+            foc = user.profile.focus.get(focus=delete_focus)
+            user.profile.focus.remove(foc)
+        except KeyError:
+            #the focus has already been deleted, maybe they reloaded the page.
+            pass
     context = {'focus_list': request.user.profile.focus.all()}
     return render(request, 'streamer/user_page.html', context)
 
@@ -48,24 +52,36 @@ def focus_page(request):
         summary = Wiki(focus).summarise()
     if request.POST.get('link'):
         link = request.POST.get('link')
-        db_link = Links(links=link)
-        db_link.save()
-        foc.links.add(db_link)
+        links = [str(link_object) for link_object in foc.links.all() ]
+        if link not in links:
+            db_link = Links(links=link)
+            db_link.save()
+            foc.links.add(db_link)
     if request.POST.get('note'):
         note = request.POST.get('note')
-        db_note = KeyWords(keywords=note)
-        db_note.save()
-        foc.keywords.add(db_note)
+        notes = [str(note_object) for note_object in foc.keywords.all()]
+        if note not in notes:
+            db_note = KeyWords(keywords=note)
+            db_note.save()
+            foc.keywords.add(db_note)
     if request.POST.get('delete-note'):
-        delete_note = request.POST.get('delete-note')
-        note = KeyWords.objects.get(keywords=delete_note)
-        foc.keywords.remove(note)
-        note.delete()
+        try:
+            delete_note = request.POST.get('delete-note')
+            note = KeyWords.objects.get(keywords=delete_note)
+            foc.keywords.remove(note)
+            note.delete()
+        except:
+            #user reloaded page so resubmitted delete request
+            pass
     if request.POST.get('delete-link'):
-        delete_link = request.POST.get('delete-link')
-        link = Links.objects.get(links=delete_link)
-        foc.links.remove(link)
-        link.delete()
+        try:
+            delete_link = request.POST.get('delete-link')
+            link = Links.objects.get(links=delete_link)
+            foc.links.remove(link)
+            link.delete()
+        except:
+            #user reloaded page so resubmitted delete request
+            pass
     context = {'focus': focus,
                'summary': summary,
                'links': foc.links.all(),
