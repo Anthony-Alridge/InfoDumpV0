@@ -3,43 +3,54 @@
 
 <head>
 {%load static%}
-<script type="text/javascript" src="{%static 'streamer\js\user.js'%}"> </script>
-<link rel="stylesheet" type="text/css" href="{%static 'streamer\css\user_page.css'%}">
-<title>InfoDump</title>
+  <script type="text/javascript" src="{%static 'streamer\js\user.js'%}"> </script>
+  <link rel="stylesheet" type="text/css" href="{%static 'streamer\css\user_page.css'%}"></link>
+  <title>InfoDump</title>
 </head>
+
 <body>
   <div id="top">
+
     <h1> InfoDump</h1>
     <p>Click on a focus to be taken to it's InfoDump.</p>
+
     <form id=#add_focus_form action="." method="post">{%csrf_token%}
       <div id="add_focus">
         <input type="text" name='focus' placeholder="Add a focus..." required></input>
         <input type="submit" value="Submit"></input>
       </div>
     </form>
+
     <form id='log_out_form' action='.' method='post'>{%csrf_token%}
-    <input class='log_out' type='submit' name='log_out_request' value='log_out'></input>
-  </form>
+      <input class='log_out' type='submit' name='log_out_request' value='log_out'></input>
+    </form>
+
   </div>
+
   <div id='main_body'>
-  <table id="linker" data-link='focusPage/'>
-  {%for focus in focus_list%}
-    <tr id="focus_style"><td>
-      <form action="focusPage/" method="post">{%csrf_token%}
-      <input type="submit" onmouseover="show_del_button('delete_{{focus}}')"
-       onmouseout="hide_del_button('delete_{{focus}}')"
-       value="{{focus}}" name="focus_query"></input>
-      </form>
-      <form action = '.' method="post">{%csrf_token%}
-        <input class='delete_button' id = 'delete_{{focus}}' type='image' value='delete'></input>
-        <input type="hidden" name="delete_focus" value="{{focus}}"></input>
-      </form>
-    </td>
-</tr>
-	{%empty%}
-	<tr><td><p id="focus_style">Add a focus to begin researching.</p></td></tr>
-  {%endfor%}
-  </form>
-</div>
+    <table id="linker" data-link='focusPage/'>
+      {%for focus in focus_list%}
+      <tr id="focus_style">
+        <td>
+
+          <form action="focusPage/" method="post">{%csrf_token%}
+            <input type="submit" onmouseover="show_del_button('delete_{{focus}}')"
+                 onmouseout="hide_del_button('delete_{{focus}}')"
+                 value="{{focus}}" name="focus_query"></input>
+          </form>
+
+          <form action = '.' method="post">{%csrf_token%}
+            <input class='delete_button' id = 'delete_{{focus}}' type='image' value='delete'></input>
+            <input type="hidden" name="delete_focus" value="{{focus}}"></input>
+          </form>
+
+        </td>
+      </tr>
+      {%empty%}
+      <tr><td><p id="focus_style">Add a focus to begin researching.</p></td></tr>
+      {%endfor%}
+    </table>
+  </div>
+
 </body
 </html>
