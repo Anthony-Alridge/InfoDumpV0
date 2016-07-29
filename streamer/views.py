@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from .models import Focus, Links, KeyWords
+from .models import Focus, Links, KeyWords, FileModel
+from .forms import UploadForm
 from .scraping.wiki import Wiki
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
@@ -88,3 +89,22 @@ def focus_page(request):
                'notes': foc.keywords.all()
                }
     return render(request, 'streamer/focus.html', context)
+
+@login_required
+def uploads(request):
+    user_profile = request.user.profile
+    focus = request.session['current_focus']
+    foc = user_profile.focus.get(focus=focus)
+    if request.method =='POST':
+        form = UploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            _file = FileModel(file_field = request.FILES['docfile'])
+            _file.save()
+            foc.files.add(_file)
+            #return HttpResponseRedirect('..')
+            #return render(request, 'streamer/uploads.html', {'form':form, 'num':num})
+    else:
+        form = UploadForm()
+
+    files = foc.files.all()
+    return render(request, 'streamer/uploads.html', {'form':form, 'files':files})

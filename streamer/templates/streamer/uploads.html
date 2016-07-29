@@ -1,0 +1,35 @@
+
+<!DOCTYPE HTML>
+<html>
+
+<head>
+{%load static%}
+  <link rel="stylesheet" type="text/css" href="{%static 'streamer\css\uploads.css'%}"></link>
+  <title>InfoDump|Uploads</title>
+</head>
+<body>
+
+<div id="top">
+
+  <h1> Uploads</h1>
+  <p>Complete the form to upload files</p>
+  <form method = 'POST' action =# enctype="multipart/form-data"> {%csrf_token%}
+  <table>
+  {{form.as_table}}
+</table>
+    <input type='submit' class = 'myButton' value = 'upload'>
+  </form>
+  <form id='log_out_form' action='.' method='post'>{%csrf_token%}
+    <input class='log_out' type='submit' name='log_out_request' value='log_out'></input>
+  </form>
+</div>
+
+<div id = 'show_files'>
+  {% for afile in files %}
+<iframe src="http://docs.google.com/gview?url=http://infodump.pythonanywhere.com{{afile}}&embedded=true"></iframe>
+  {%endfor%}
+</div>
+
+
+</body>
+</html>

@@ -5,5 +5,7 @@ app_name = 'streamer'
 
 urlpatterns = [
     url(r'^$', views.user_page, name='user_page'),
-    url(r'^focusPage/$', views.focus_page, name='focus_page')
+    url(r'^focusPage/$', views.focus_page, name='focus_page'),
+    url(r'^focusPage/uploads$', views.uploads, name='uploads')
+
     ]
