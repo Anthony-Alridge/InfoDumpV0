@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 
 #helper functions
 
+#TODO: tests for upload view
 
 def insert_focus(topic, user):
     #inserts a new focus to the test database
@@ -160,7 +161,7 @@ class FocusPageViewTests(TestCase):
         response = self.client.post(reverse('streamer:focus_page'))
         self.assertEqual(response.status_code, 200)
         self.assertIsNotNone(response.context['summary'])
-    
+
     def test_focus_page_allows_user_to_delete_notes(self):
          '''
          When a post request labelled delete_note is sent to server

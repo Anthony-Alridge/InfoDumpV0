@@ -96,11 +96,22 @@ def uploads(request):
     focus = request.session['current_focus']
     foc = user_profile.focus.get(focus=focus)
     if request.method =='POST':
-        form = UploadForm(request.POST, request.FILES)
-        if form.is_valid():
-            _file = FileModel(file_field = request.FILES['docfile'])
-            _file.save()
-            foc.files.add(_file)
+        if request.POST.get('delete_file'):
+            try:
+                delete_file = request.POST.get('delete_file')
+                _file = FileModel.objects.get(file_field = delete_file)
+                foc.files.remove(_file)
+                _file.delete()
+            except:
+                pass
+
+        else:
+            form = UploadForm(request.POST, request.FILES)
+            if form.is_valid():
+                if not foc.files.get(file_field = request.FILES['docfile']):
+                    _file = FileModel(file_field = request.FILES['docfile'])
+                    _file.save()
+                    foc.files.add(_file)
             #return HttpResponseRedirect('..')
             #return render(request, 'streamer/uploads.html', {'form':form, 'num':num})
     else:

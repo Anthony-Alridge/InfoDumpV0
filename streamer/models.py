@@ -16,7 +16,7 @@ class Links(models.Model):
 
 
 class FileModel(models.Model):
-    file_field = models.FileField(upload_to = 'media/files')
+    file_field = models.FileField(upload_to = 'files')
 
     def __str__(self):
         return self.file_field.url

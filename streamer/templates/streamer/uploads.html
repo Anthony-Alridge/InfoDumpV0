@@ -4,6 +4,7 @@
 
 <head>
 {%load static%}
+  <script type="text/javascript" src="{%static 'streamer\js\user.js'%}"> </script>
   <link rel="stylesheet" type="text/css" href="{%static 'streamer\css\uploads.css'%}"></link>
   <title>InfoDump|Uploads</title>
 </head>
@@ -26,7 +27,19 @@
 
 <div id = 'show_files'>
   {% for afile in files %}
-<iframe src="http://docs.google.com/gview?url=http://infodump.pythonanywhere.com{{afile}}&embedded=true"></iframe>
+<table>
+  <td>
+<iframe onmouseover="show_del_button('delete_{{focus}}')"
+        onmouseout="hide_del_button('delete_{{focus}}')"
+        src="http://docs.google.com/gview?url=http://infodump.pythonanywhere.com{{afile}}&embedded=true">
+</iframe>
+
+<form action = '.' method="post">{%csrf_token%}
+  <input class='delete_button' type='image' value='delete'></input>
+  <input type="hidden" name="delete_file" value="{{afile}}"></input>
+</form>
+  </td>
+</table>
   {%endfor%}
 </div>
 
