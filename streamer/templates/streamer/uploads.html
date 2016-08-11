@@ -19,15 +19,21 @@
 </table>
     <input type='submit' class = 'myButton' value = 'upload'>
   </form>
+  
   <form id='log_out_form' action='.' method='post'>{%csrf_token%}
     <input class='log_out' type='submit' name='log_out_request' value='log_out'></input>
+  </form>
+
+  <form id = 'del_button' method='post' action='.'>
+  <input type ='image' name="delete_file" value="get_value()">
   </form>
 </div>
 
 <div id = 'show_files'>
   {% for afile in files %}
-<iframe src="http://docs.google.com/gview?url=http://infodump.pythonanywhere.com{{afile}}&embedded=true"></iframe>
+<iframe onmouseclick = "show_del_button({{afile}})" src="http://docs.google.com/gview?url=http://infodump.pythonanywhere.com{{afile}}&embedded=true"></iframe>
   {%endfor%}
+
 </div>
 
 

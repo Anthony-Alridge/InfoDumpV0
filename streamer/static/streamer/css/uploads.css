@@ -95,3 +95,11 @@ body{
 #log_out_form{
   display: inline-block;
 }
+#del_button{
+    display: none;
+    position:absolute;
+    right:0;
+    bottom: 0;
+    image: url(../imgs/banner-white.png)
+
+}
