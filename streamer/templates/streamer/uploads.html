@@ -29,13 +29,13 @@
   {% for afile in files %}
 <table>
   <td>
-<iframe onmouseover="show_del_button('delete_{{focus}}')"
-        onmouseout="hide_del_button('delete_{{focus}}')"
+<iframe onmouseover="show_del_button('delete_{{afile}}')"
+        onmouseout="hide_del_button('delete_{{afile}}')"
         src="http://docs.google.com/gview?url=http://infodump.pythonanywhere.com{{afile}}&embedded=true">
 </iframe>
 
 <form action = '.' method="post">{%csrf_token%}
-  <input class='delete_button' type='image' value='delete'></input>
+  <input class='delete_button' type='image' value='delete' id= 'delete_{{afile}}'></input>
   <input type="hidden" name="delete_file" value="{{afile}}"></input>
 </form>
   </td>
