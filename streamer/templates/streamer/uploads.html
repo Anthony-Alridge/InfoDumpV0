@@ -26,13 +26,13 @@
   </form>
 
   <form method='post' action='.'> {%csrf_token%}
-  <input  id = 'del_button' type ='image' name="delete_file">
+  <input  id ='del_button' type ='image' name="delete_file">
   </form>
 </div>
 
 <div id = 'show_files'>
   {% for afile in files %}
-<iframe onmouseclick = "show_del_button({{afile}})" src="http://docs.google.com/gview?url=http://infodump.pythonanywhere.com{{afile}}&embedded=true"></iframe>
+<iframe class='frame' onmouseclick="show_del_button({{afile}})" src="http://docs.google.com/gview?url=http://infodump.pythonanywhere.com{{afile}}&embedded=true"></iframe>
   {%endfor%}
 
 </div>
