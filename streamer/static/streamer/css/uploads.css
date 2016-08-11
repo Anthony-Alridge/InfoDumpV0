@@ -8,9 +8,7 @@
   background-image:url(../imgs/banner.png);
   text-align: center;
 }
-.frame{
-cursor:pointer;
-}
+
 #show_files{
   width: 100%;
   position:absolute;
@@ -97,14 +95,4 @@ body{
 }
 #log_out_form{
   display: inline-block;
-}
-#del_button{
-    display: none;
-    position:absolute;
-    right:0;
-    bottom: 0;
-    width = 10%;
-    height = 10%;
-    background-image: url(../imgs/banner-white.png)
-
 }

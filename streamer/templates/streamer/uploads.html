@@ -4,7 +4,6 @@
 
 <head>
 {%load static%}
-  <script type="text/javascript" src="{%static 'streamer\js\uploads.js'%}"> </script>
   <link rel="stylesheet" type="text/css" href="{%static 'streamer\css\uploads.css'%}"></link>
   <title>InfoDump|Uploads</title>
 </head>
@@ -25,14 +24,11 @@
     <input class='log_out' type='submit' name='log_out_request' value='log_out'></input>
   </form>
 
-  <form method='post' action='.'> {%csrf_token%}
-  <input  id ='del_button' type ='image' name="delete_file">
-  </form>
 </div>
 
 <div id = 'show_files'>
   {% for afile in files %}
-<iframe class='frame' onmouseclick="show_del_button({{afile}})" src="http://docs.google.com/gview?url=http://infodump.pythonanywhere.com{{afile}}&embedded=true"></iframe>
+<iframe class='frame' src="http://docs.google.com/gview?url=http://infodump.pythonanywhere.com{{afile}}&embedded=true"></iframe>
   {%endfor%}
 
 </div>
