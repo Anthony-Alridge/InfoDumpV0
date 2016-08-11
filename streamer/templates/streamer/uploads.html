@@ -4,6 +4,7 @@
 
 <head>
 {%load static%}
+  <script type="text/javascript" src="{%static 'streamer\js\uploads.js'%}"> </script>
   <link rel="stylesheet" type="text/css" href="{%static 'streamer\css\uploads.css'%}"></link>
   <title>InfoDump|Uploads</title>
 </head>
@@ -19,7 +20,7 @@
 </table>
     <input type='submit' class = 'myButton' value = 'upload'>
   </form>
-  
+
   <form id='log_out_form' action='.' method='post'>{%csrf_token%}
     <input class='log_out' type='submit' name='log_out_request' value='log_out'></input>
   </form>
