@@ -108,10 +108,9 @@ def uploads(request):
         else:
             form = UploadForm(request.POST, request.FILES)
             if form.is_valid():
-                if not foc.files.get(file_field = request.FILES['docfile']):
-                    _file = FileModel(file_field = request.FILES['docfile'])
-                    _file.save()
-                    foc.files.add(_file)
+                _file = FileModel(file_field = request.FILES['docfile'])
+                _file.save()
+                foc.files.add(_file)
             #return HttpResponseRedirect('..')
             #return render(request, 'streamer/uploads.html', {'form':form, 'num':num})
     else:
