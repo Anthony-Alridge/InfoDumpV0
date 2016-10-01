@@ -1,10 +1,11 @@
-from django.shortcuts import render, redirect
+serfrom django.shortcuts import render, redirect
 from .models import Focus, Links, KeyWords, FileModel
 from .forms import UploadForm
 from .scraping.wiki import Wiki
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.core.urlresolvers import reverse
+import os
 #import pdb
 
 @login_required
@@ -97,13 +98,11 @@ def uploads(request):
     foc = user_profile.focus.get(focus=focus)
     if request.method =='POST':
         if request.POST.get('delete_file'):
-            try:
-                delete_file = request.POST.get('delete_file')
-                _file = FileModel.objects.get(file_field = delete_file)
-                foc.files.remove(_file)
-                _file.delete()
-            except:
-                pass
+            filename = request.POST.get('delete_file')
+            _file = FileModel.objects.get(file_name = filename)
+            foc.files.remove(_file)
+            _file.delete()
+            form = UploadForm()
 
         else:
             form = UploadForm(request.POST, request.FILES)

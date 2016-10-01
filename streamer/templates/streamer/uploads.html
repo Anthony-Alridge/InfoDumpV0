@@ -1,4 +1,4 @@
-
+ runserver
 <!DOCTYPE HTML>
 <html>
 
@@ -28,7 +28,12 @@
 
 <div id = 'show_files'>
   {% for afile in files %}
+  <div id='block'>
 <iframe class='frame' src="http://docs.google.com/gview?url=http://infodump.pythonanywhere.com{{afile}}&embedded=true"></iframe>
+<form action=# method='post'>{%csrf_token%}
+<input type='submit' name='delete_file' value={{afile}}>
+</form>
+</div>
   {%endfor%}
 
 </div>
