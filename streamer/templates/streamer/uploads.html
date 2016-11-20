@@ -1,15 +1,11 @@
- runserver
-<!DOCTYPE HTML>
-<html>
-
-<head>
+{% extends 'streamer/base.html' %}
+{%block head%}
 {%load static%}
   <link rel="stylesheet" type="text/css" href="{%static 'streamer\css\uploads.css'%}"></link>
   <title>InfoDump|Uploads</title>
-</head>
-<body>
+{%endblock%}
 
-<div id="top">
+{%block top%}
 
   <h1> Uploads</h1>
   <p>Complete the form to upload files</p>
@@ -24,20 +20,14 @@
     <input class='log_out' type='submit' name='log_out_request' value='log_out'></input>
   </form>
 
-</div>
-
+{%endblock%}
+{%block main_body%}
 <div id = 'show_files'>
   {% for afile in files %}
   <div id='block'>
 <iframe class='frame' src="http://docs.google.com/gview?url=http://infodump.pythonanywhere.com{{afile}}&embedded=true"></iframe>
-<form action=# method='post'>{%csrf_token%}
-<input type='submit' name='delete_file' value={{afile}}>
-</form>
-</div>
+  </div>
   {%endfor%}
 
 </div>
-
-
-</body>
-</html>
+{%endblock%}

@@ -1,4 +1,4 @@
-serfrom django.shortcuts import render, redirect
+from django.shortcuts import render, redirect
 from .models import Focus, Links, KeyWords, FileModel
 from .forms import UploadForm
 from .scraping.wiki import Wiki
@@ -54,7 +54,7 @@ def focus_page(request):
         summary = Wiki(focus).summarise()
     if request.POST.get('link'):
         link = request.POST.get('link')
-        links = [str(link_object) for link_object in foc.links.all() ]
+        links = [str(link_object) for link_object in foc.links.all()]
         if link not in links:
             db_link = Links(links=link)
             db_link.save()
@@ -98,11 +98,13 @@ def uploads(request):
     foc = user_profile.focus.get(focus=focus)
     if request.method =='POST':
         if request.POST.get('delete_file'):
-            filename = request.POST.get('delete_file')
-            _file = FileModel.objects.get(file_name = filename)
-            foc.files.remove(_file)
-            _file.delete()
-            form = UploadForm()
+            try:
+                delete_file = request.POST.get('delete_file')
+                _file = FileModel.objects.get(file_field = delete_file)
+                foc.files.remove(_file)
+                _file.delete()
+            except:
+                pass
 
         else:
             form = UploadForm(request.POST, request.FILES)
@@ -116,4 +118,5 @@ def uploads(request):
         form = UploadForm()
 
     files = foc.files.all()
-    return render(request, 'streamer/uploads.html', {'form':form, 'files':files})
+    navlinks = [{'name':'FocusPage', 'link':'streamer/focusPage'}]
+    return render(request, 'streamer/uploads.html', {'form':form, 'files':files, 'navlinks':navlinks})

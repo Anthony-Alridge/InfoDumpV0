@@ -15,17 +15,11 @@ class Links(models.Model):
         return self.links
 
 
-def filename():
-    return file_field.name
-
 class FileModel(models.Model):
     file_field = models.FileField(upload_to = 'files')
-    file_name = models.CharField(max_length=256, default=filename())
 
     def __str__(self):
         return self.file_field.url
-
-
 
 
 class Focus(models.Model):

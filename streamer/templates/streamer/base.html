@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+{%load static%}
+<link rel="stylesheet" type="text/css" href="{%static 'streamer\css\base.css'%}">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<title>InfoDump</title>
+{%block head%}
+{%endblock%}
+</head>
+<body>
+
+<div id="top">
+  <form id='log_out_form' action='.' method='post'>{%csrf_token%}
+    <input class='log_out' type='submit' name='log_out_request' value='log_out'></input>
+  </form>
+  <nav>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+     <ul class="nav navbar-nav">
+        <li class="active"><a href="/streamer/">Streamer <span class="sr-only">(current)</span></a></li>
+        {%for navlink in navlinks%}
+        <li><a href="/{{navlink.link}}">{{navlink.name}}</a></li>
+        {%endfor%}
+
+     </ul>
+  </nav>
+{%block top%}
+{%endblock%}
+</div>
+
+
+{%block main_body%}
+{%endblock%}
+
+
+</body>
+</html>

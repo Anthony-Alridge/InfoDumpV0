@@ -1,16 +1,11 @@
-<!DOCTYPE HTML>
-<html>
-
-<head>
+{% extends 'streamer/base.html'%}
+{%block head%}
 {%load static%}
   <script type="text/javascript" src="{%static 'streamer\js\user.js'%}"> </script>
   <link rel="stylesheet" type="text/css" href="{%static 'streamer\css\user_page.css'%}"></link>
-  <title>InfoDump</title>
-</head>
+{%endblock%}
 
-<body>
-  <div id="top">
-
+{%block top%}
     <h1> InfoDump</h1>
     <p>Click on a focus to be taken to it's InfoDump.</p>
 
@@ -25,9 +20,10 @@
       <input class='log_out' type='submit' name='log_out_request' value='log_out'></input>
     </form>
 
-  </div>
+{%endblock%}
 
-  <div id='main_body'>
+{%block main_body%}
+<div id = 'main_body'>
     <table id="linker" data-link='focusPage/'>
       {%for focus in focus_list%}
       <tr id="focus_style">
@@ -51,6 +47,4 @@
       {%endfor%}
     </table>
   </div>
-
-</body
-</html>
+{%endblock%}

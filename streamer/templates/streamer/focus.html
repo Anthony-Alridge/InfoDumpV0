@@ -1,14 +1,15 @@
-<!DOCTYPE HTML>
-<head>
+
+{% extends 'streamer/base.html' %}
+  {%block head%}
   {%load static%}
   <link href='https://fonts.googleapis.com/css?family=Lato:400,300,900' rel='stylesheet' type='text/css'></link>
   <link rel="stylesheet" type="text/css" href="{%static 'streamer\css\focus.css'%}"></link>
   <script type='text/javascript' src="{%static 'streamer\js\focus.js'%}"></script>
   <title>{{focus}}</title>
-</head>
-<body>
+  {%endblock%}
 
-  <div id="top">
+  {%block top%}
+
 
     <h1> {{focus}} </h1>
 
@@ -26,12 +27,10 @@
       </div>
     </form>
 
-    <form id='log_out_form' action='.' method='post'>{%csrf_token%}
-      <input class='log_out' type='submit' name='log_out_request' value='log_out'></input>
-    </form>
 
-  </div>
 
+   {%endblock%}
+   {%block main_body%}
   <div class = 'topic_info'>
     <table>
 
@@ -93,4 +92,4 @@
       </tr>
     </table>
   </div>
-</body>
+  {%endblock%}

@@ -1,11 +1,6 @@
-<!DOCTYPE html>
+
 {% extends 'home/base.html' %}
-<html lang='en'>
-<head>
-  {%load static%}
-  <link rel="stylesheet" type="text/css" href="{%static 'home\css\base.css'%}">
-</head>
-<body>
+
   {%block top%}
   <h1>Welcome to Infodump, sign in below or register to the right</h1>
   <a href="signUpPage">Register</a>
@@ -20,6 +15,3 @@
   <p><input class='myButton' type='submit' value='Submit'></p>
 </form>
 {%endblock%}
-</body>
-
-</html>
